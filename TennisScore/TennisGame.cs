@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TennisScore
 {
@@ -24,14 +25,15 @@ namespace TennisScore
 
             if (game.IsScoreDifferent())
             {
-                if (game.FirstPlayerScore > 3)
+                if (game.FirstPlayerScore > 3 || game.SecondPlayerScore > 3)
                 {
-                    if (game.FirstPlayerScore - game.SecondPlayerScore == 1)
+                    if (Math.Abs(game.FirstPlayerScore - game.SecondPlayerScore) == 1)
                     {
-                        return game.FirstPlayerName + " Adv";
+                        var advPlayer = game.FirstPlayerScore > game.SecondPlayerScore ? game.FirstPlayerName : game.SecondPlayerName;
+                        return advPlayer + " Adv";
                     }
                 }
-              
+
                 return _scoreLookup[game.FirstPlayerScore] + " " + _scoreLookup[game.SecondPlayerScore];
             }
 
@@ -41,7 +43,6 @@ namespace TennisScore
             }
 
             return _scoreLookup[game.FirstPlayerScore] + " All";
-
         }
     }
 }
