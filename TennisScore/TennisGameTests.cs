@@ -65,6 +65,12 @@ namespace TennisScore
             GivenGame(firstPlayerScore: 2, secondPlayerScore: 2);
             ScoreResultShouldBe("Thirty All");
         }
+        [TestMethod]
+        public void Deuce()
+        {
+            GivenGame(firstPlayerScore: 3, secondPlayerScore: 3);
+            ScoreResultShouldBe("Deuce");
+        }
 
         private void ScoreResultShouldBe(string expected)
         {
