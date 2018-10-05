@@ -1,4 +1,6 @@
-﻿namespace TennisScore
+﻿using System;
+
+namespace TennisScore
 {
     public class Game
     {
@@ -17,6 +19,20 @@
         {
             return FirstPlayerScore >= 3;
         }
-    
+
+        public string AdvPlayer()
+        {
+            return FirstPlayerScore > SecondPlayerScore ? FirstPlayerName : SecondPlayerName;
+        }
+
+        public bool IsReadyForWin()
+        {
+            return FirstPlayerScore > 3 || SecondPlayerScore > 3;
+        }
+
+        public bool IsAdv()
+        {
+            return Math.Abs(FirstPlayerScore - SecondPlayerScore) == 1;
+        }
     }
 }
