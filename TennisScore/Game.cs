@@ -10,5 +10,11 @@
         {
             return FirstPlayerScore != SecondPlayerScore;
         }
+
+        public bool IsDeuce()
+        {
+            return FirstPlayerScore >= 3;
+        }
+    
     }
 }
