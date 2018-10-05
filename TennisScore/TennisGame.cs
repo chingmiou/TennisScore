@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TennisScore
 {
@@ -7,10 +6,11 @@ namespace TennisScore
     {
         private readonly IRepository<Game> _repo;
 
-        private Dictionary<int, string> _scoreLookup = new Dictionary<int , string>{
+        private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>{
+            { 0, "Love"} ,
             { 1, "Fifteen"} ,
             { 2, "Thirty"},
-            {3, "Forty"},
+            { 3, "Forty"},
         };
 
         public TennisGame(IRepository<Game> repo)
@@ -22,17 +22,9 @@ namespace TennisScore
         {
             var game = this._repo.GetGame(gameId);
 
-            if(game.SecondPlayerScore ==2)
+            if (game.FirstPlayerScore != game.SecondPlayerScore)
             {
-                return "Love Thirty";
-            }
-            if(game.SecondPlayerScore ==1)
-            {
-                return "Love Fifteen";
-            }
-            if (game.FirstPlayerScore > 0)
-            {
-                return _scoreLookup[game.FirstPlayerScore] + " Love";
+                return _scoreLookup[game.FirstPlayerScore] + " " + _scoreLookup[game.SecondPlayerScore];
             }
 
             return "Love All";
