@@ -7,6 +7,7 @@ namespace TennisScore
     public class TennisGameTests
     {
         private const int AnyGameId = 1;
+        private const string FirstPlayerName = "Alex";
         private IRepository<Game> _repository = Substitute.For<IRepository<Game>>();
         private TennisGame _tennisGame;
 
@@ -65,11 +66,19 @@ namespace TennisScore
             GivenGame(firstPlayerScore: 2, secondPlayerScore: 2);
             ScoreResultShouldBe("Thirty All");
         }
+
         [TestMethod]
         public void Deuce()
         {
             GivenGame(firstPlayerScore: 3, secondPlayerScore: 3);
             ScoreResultShouldBe("Deuce");
+        }
+
+        [TestMethod]
+        public void FirstPlayer_Adv()
+        {
+            GivenGame(firstPlayerScore: 4, secondPlayerScore: 3);
+            ScoreResultShouldBe(FirstPlayerName + " Adv");
         }
 
         private void ScoreResultShouldBe(string expected)
@@ -80,7 +89,14 @@ namespace TennisScore
 
         private void GivenGame(int firstPlayerScore, int secondPlayerScore)
         {
-            _repository.GetGame(AnyGameId).Returns(new Game { Id = AnyGameId, FirstPlayerScore = firstPlayerScore, SecondPlayerScore = secondPlayerScore });
+            _repository.GetGame(AnyGameId).Returns(
+                new Game
+                {
+                    Id = AnyGameId,
+                    FirstPlayerName = FirstPlayerName,
+                    FirstPlayerScore = firstPlayerScore,
+                    SecondPlayerScore = secondPlayerScore
+                });
         }
 
         [TestInitialize]
