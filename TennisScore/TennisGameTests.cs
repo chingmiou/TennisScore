@@ -20,35 +20,42 @@ namespace TennisScore
         [TestMethod]
         public void Fifteen_Love()
         {
-            GivenGame(firstPlayerScore:1 , secondPlayerScore: 0);
+            GivenGame(firstPlayerScore: 1, secondPlayerScore: 0);
             ScoreResultShouldBe("Fifteen Love");
         }
 
         [TestMethod]
         public void Thirty_Love()
         {
-            GivenGame(firstPlayerScore:2 , secondPlayerScore: 0);
+            GivenGame(firstPlayerScore: 2, secondPlayerScore: 0);
             ScoreResultShouldBe("Thirty Love");
         }
 
-     [TestMethod]
+        [TestMethod]
         public void Forty_Love()
         {
-            GivenGame(firstPlayerScore:3 , secondPlayerScore: 0);
+            GivenGame(firstPlayerScore: 3, secondPlayerScore: 0);
             ScoreResultShouldBe("Forty Love");
         }
 
-     [TestMethod]
+        [TestMethod]
         public void Love_Fifteen()
         {
-            GivenGame(firstPlayerScore:0 , secondPlayerScore: 1);
+            GivenGame(firstPlayerScore: 0, secondPlayerScore: 1);
             ScoreResultShouldBe("Love Fifteen");
         }
-     [TestMethod]
+
+        [TestMethod]
         public void Love_Thirty()
         {
-            GivenGame(firstPlayerScore:0 , secondPlayerScore: 2);
+            GivenGame(firstPlayerScore: 0, secondPlayerScore: 2);
             ScoreResultShouldBe("Love Thirty");
+        }
+        [TestMethod]
+        public void Fifteen_All()
+        {
+            GivenGame(firstPlayerScore: 1, secondPlayerScore: 1);
+            ScoreResultShouldBe("Fifteen All");
         }
 
         private void ScoreResultShouldBe(string expected)
@@ -59,7 +66,7 @@ namespace TennisScore
 
         private void GivenGame(int firstPlayerScore, int secondPlayerScore)
         {
-            _repository.GetGame(AnyGameId).Returns(new Game {Id = AnyGameId, FirstPlayerScore = firstPlayerScore, SecondPlayerScore =secondPlayerScore });
+            _repository.GetGame(AnyGameId).Returns(new Game { Id = AnyGameId, FirstPlayerScore = firstPlayerScore, SecondPlayerScore = secondPlayerScore });
         }
 
         [TestInitialize]
