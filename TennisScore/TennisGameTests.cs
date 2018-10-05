@@ -51,11 +51,19 @@ namespace TennisScore
             GivenGame(firstPlayerScore: 0, secondPlayerScore: 2);
             ScoreResultShouldBe("Love Thirty");
         }
+
         [TestMethod]
         public void Fifteen_All()
         {
             GivenGame(firstPlayerScore: 1, secondPlayerScore: 1);
             ScoreResultShouldBe("Fifteen All");
+        }
+
+        [TestMethod]
+        public void Thirty_All()
+        {
+            GivenGame(firstPlayerScore: 2, secondPlayerScore: 2);
+            ScoreResultShouldBe("Thirty All");
         }
 
         private void ScoreResultShouldBe(string expected)
